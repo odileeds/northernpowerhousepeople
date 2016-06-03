@@ -96,7 +96,7 @@ function drawResults(){
 	var str = "";
 	var orgconfig = {'Council':{'plural':'councils','singular':'council'},'PPP':{'plural':'public-private partnerships','singular':'public-private partnership'},'Combined Authority':{'plural':'combined authorities','singular':'combined authority'},'Government':{'plural':'government agencies','singular':'government agency'}};
 	// Information about the types of organisation
-	str += '<p>The <a href="'+file+'" class="c14-bg">data set</a> consists of '+listByLargest(types,orgconfig)+'. ';
+	str += '<p>The <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="c14-bg">data set</a> consists of '+listByLargest(types,orgconfig)+'. ';
 	
 	// Information about the gender split
 	var t = 0;
