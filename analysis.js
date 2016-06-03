@@ -194,7 +194,7 @@ function genderSplitByRole(typ,order){
 			str += '<tr><td>'+r+'</td>';
 			var m = (100*roles[r].male/t).toFixed(1);
 			var f = (100-parseFloat(m)).toFixed(1);
-			str += '<td><div class="chart"><div class="bar female" style="width:'+f+'%;" title="'+f+'%"><span>'+roles[r].female+'</span></div><div class="bar male" style="width:'+m+'%;" title="'+m+'%"><span>'+roles[r].male+'</span></div></div></td>';
+			str += '<td><div class="chart">'+(roles[r].female == 0 ? '' : '<div class="bar female" style="width:'+f+'%;" title="'+f+'%"><span>'+roles[r].female+'</span></div>')+'<div class="bar male" style="width:'+m+'%;" title="'+m+'%"><span>'+roles[r].male+'</span></div></div></td>';
 			str += '</tr>';
 		}
 	}
