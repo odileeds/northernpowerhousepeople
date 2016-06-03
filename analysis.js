@@ -94,7 +94,7 @@ function drawResults(){
 
 	// Build output
 	var str = "";
-	var orgconfig = {'Council':{'plural':'councils','singular':'council'},'PPP':{'plural':'public-private partnerships','singular':'public-private partnership'},'Combined Authority':{'plural':'combined authorities','singular':'combined authority'},'Government':{'plural':'government agencies','singular':'government agency'}};
+	var orgconfig = {'Council':{'plural':'councils','singular':'council'},'PPP':{'plural':'public-private partnerships','singular':'public-private partnership'},'Combined Authority':{'plural':'combined authorities','singular':'combined authority'},'Government':{'plural':'government agencies','singular':'government agency'},'PCC':{'plural':'police and crime commissioners','singular':'police and crime commissioner'}};
 	// Information about the types of organisation
 	str += '<p>The <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="c14-bg">data set</a> consists of '+listByLargest(types,orgconfig)+'. ';
 	
