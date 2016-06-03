@@ -90,8 +90,8 @@ table:last-child { margin-bottom: 0; }
 .c2-bg { background-color: #178CFF; color: white; }
 .c3-bg { background-color: #00B6FF; color: white; }
 .c4-bg { background-color: #08DEF9; }
-.c5-bg, .male { background-color: #1DD3A7; color: white; }
-.c6-bg { background-color: #0DBC37; color: white; }
+.c5-bg { background-color: #1DD3A7; color: white; }
+.c6-bg, .male { background-color: #0DBC37; color: white; }
 .c7-bg { background-color: #67E767; }
 .c8-bg, .female { background-color: #722EA5; color: white; }
 .c9-bg { background-color: #E6007C; color: white; }

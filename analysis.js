@@ -149,9 +149,9 @@ function drawResults(){
 
 
 //	str += '<br /><br /><br />'
-//	for(var i = 1; i < 16; i++){
-//		str += '<span class="c'+i+'-bg" style="padding: 1em;">'+i+'</span>';
-//	}
+	for(var i = 1; i < 16; i++){
+		str += '<span class="c'+i+'-bg" style="padding: 1em;">'+i+'</span>';
+	}
 	S('#main').html(str);
 
 }
