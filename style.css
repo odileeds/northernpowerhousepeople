@@ -71,6 +71,7 @@ a { color: inherit; text-decoration: none; }
 }
 .bar.female {
 	text-align: left;
+	border-right: 1px solid white;
 }
 .bar.male {
 	text-align: right;
