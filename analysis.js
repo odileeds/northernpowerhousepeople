@@ -31,7 +31,7 @@ function CSV2JSON(data,format,start,end){
 }
 
 
-function parseShow(d){
+function parseData(d){
 	var bits,p,g,a,b,w,hm,hf,hu,h,ep;
 	var html = "";
 	w = Math.floor(100*100/Math.min(d.organisations.length,200))/100;
@@ -66,45 +66,8 @@ function parseShow(d){
 		if(g.f+g.m+g.o < d.size){ g.u = d.size-g.f-g.m-g.o; }
 		d.organisations[i].gender = g;
 
-//		// Build episode split
-//		hf = Math.round(h*g.f/(g.f+g.m+g.u+g.o));
-//		hm = Math.round(h*g.m/(g.f+g.m+g.u+g.o));
-//		ho = Math.round(h*g.o/(g.f+g.m+g.u+g.o));
-//		// Stop the height going over 100% due to rounding
-//		if(hm+hf+ho > h){ hm = h - hf - ho; }
-//		hu = h-hm-hf-ho;
-//		ep = d.organisations[i].id;
-//
-//		if(d.organisations[i].date) ep += ' ('+d.organisations[i].date.toLocaleDateString()+')'
-//		ep += ': ';
-//		var ref = (d.organisations[i].ref ? (d.organisations[i].ref.indexOf(" ") > 0 ? d.organisations[i].ref.substr(0,d.organisations[i].ref.indexOf(" ")) : d.organisations[i].ref) : '')
-//		html += '<a '+(ref ? 'href="'+ref+'" ' : '')+'class="col" style="width:'+w+'%;" data-id="'+i+'"><div class="other" title="'+ep+g.o+'" style="height:'+ho+'px"></div><div class="female" title="'+ep+g.f+' '+(g.f > 1 ? 'women':'woman')+'" style="height:'+hf+'px"></div><div class="male" title="'+ep+g.m+' '+(g.m > 1 ? 'men':'man')+'" style="height:'+hm+'px"></div><div class="unknown" title="'+ep+g.u+' unknown" style="height:'+hu+'px"></div></a>';
 	}
 
-	if(html != ""){
-		var el = document.getElementById(d.id+"_graph");
-		el.innerHTML = "<h3>Episode-by-episode breakdown</h3>"+html;
-		S('.col').on('mouseenter',function(e){
-			var id = parseInt(S(e.currentTarget).attr('data-id'));
-			if(id != over){
-				// Remove any existing infobubbles
-				S('.infobubble').remove();
-				var html = "";
-				for(var p = 0 ; p < d.organisations[id].people.length; p++){
-					html += '<li><a href="../people/'+d.organisations[id].people[p].id+'.html" class="'+d.organisations[id].people[p].gender+'">'+d.organisations[id].people[p].name+"</a></li>";
-				}
-				if(html) html = "<ul>"+html+"</ul>";
-				html = '<h3>'+d.organisations[id].id+' (<time datetime="'+d.organisations[id].date.toISOString()+'">'+d.organisations[id].date.toISOString().substr(0,10)+'</time>)</h3>'+html;
-				S(e.currentTarget).append('<div class="infobubble"><div class="infobubble_inner">'+html+'</div></div>')
-				//console.log(id,d.organisations[id])
-				over = id;
-			}
-		});
-		S('.graph').on('mouseleave',function(e){
-			// Remove any existing infobubbles
-			//S('.infobubble').remove();
-		});
-	}
 	return d;
 }
 
@@ -143,7 +106,7 @@ function drawResults(){
 	// For each organisation type
 	for(var t in orgconfig){
 		// By role
-		str += '<h2>Gender split by role for '+orgconfig[t].plural+'</h2>';
+		str += '<h2>Gender split by role for '+orgconfig[t].plural+' ('+types[t]+')</h2>';
 		str += genderSplitByRole(t,['Leader','Deputy Leader','Elected Mayor','Mayor','Deputy Mayor','Chair','Deputy Chair','Vice Chair','Chief Executive','Deputy Chief Executive','Chief Operating Officer']);
 	}
 
@@ -233,7 +196,7 @@ S(document).ready(function(){
 		'complete': function(data){
 			var d = {'data':data};
 			d.organisations = CSV2JSON(data,[{'name':'name','format':'string'},{'name':'type','format':'string'},{'name':'people','format':'string'},{'name':'url','format':'string'},{'name':'wikipedia','format':'string'}],1);
-			fulldata = parseShow(d);
+			fulldata = parseData(d);
 			drawResults();
 		},
 		'error': function(){ console.log('error') },
