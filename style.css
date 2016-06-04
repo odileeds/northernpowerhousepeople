@@ -43,28 +43,33 @@ table {
 /* End of reset */
 
 
-body { background-color: white; font-family: Helvetica, Arial, sans-serif; margin: 0px; padding: 0px; }
-h1 { line-height: 1em; font-size: 2.9em; }
-h2 { font-size: 1.4em; font-weight: bold; }
+body { background-color: white; color: #333333; font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif ; margin: 0px; padding: 0px; }
+h1 { line-height: 1em; }
+h2 { font-size: 1.4em; font-weight: bold; margin-bottom: 0.25em; }
 h3 { font-size: 1.2em; font-weight: bold; }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; }
 #main { line-height: 1.4em; }
-#main .inline, #main a { padding: 0.1em 0.25em; }
-#main a { background-color: #F9BC26; }
-#main a:hover, #main a:focus { text-decoration: underline; }
-
+#main .inline, #main p a { padding: 0.1em 0.25em; text-decoration: none; }
+#main p a { background-color: #F9BC26; }
+#main p a:hover, #main p a:focus { text-decoration: underline; }
+.title, #main { width: 1024px; max-width: 100%; margin: auto; position: relative; }
 .header {
 	line-height: 2em;
-	padding: 0.5em 0.8em 0em 7em;
+	padding: 1em 0 1em 0;
 }
+.header .title { padding-left: 2em; font-size: 2.3em; }
 .header img {
+	height: 1.92em;
 	position: absolute; 
-	top: -0.38em;
-	left: -1.5em;
+	top: -0.45em;
+	left: -1.76em;
 }
 #main {
 	position: relative;
-	padding: 1em;
+	padding: 1em 0;
+}
+.chart {
+	width: 100%;
 }
 .bar {
 	display: inline-block;
@@ -78,7 +83,13 @@ a { color: inherit; text-decoration: none; }
 }
 .bar span {
 	padding: 0 0.25em;
+	position: relative;
+	white-space: nowrap;
 }
+ul.people { padding: 0.5em; background-color: #efefef; margin-bottom: 1em; }
+ul.people li { line-height: 1.5em; position: relative; }
+ul.people .handle { width: 1em; display: inline-block; height: 1em; margin-right: 0.25em; top: 0.12em; position: relative; border-radius: 100%; }
+ul.people .name { display: inline-block; }
 
 table { width: 100%; }
 table tr { border-bottom: 1px solid transparent; }
@@ -104,3 +115,11 @@ table:last-child { margin-bottom: 0; }
 .b1-bg { background-color: #000000; color: white; }
 .b2-bg { background-color: #333333; }
 .b3-bg { background-color: #999999; }
+
+@media only screen and (max-width: 1024px) {
+	.header .title { font-size: 1.3em; }
+	table td { display: block; }
+	.chart { display: block; position relative; }
+	.bar { height: 3em; display: inline-block;}
+	.header, #main { padding: 1em; }
+}

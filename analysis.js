@@ -116,18 +116,26 @@ function drawResults(){
 //		str += '<span class="c'+i+'-bg" style="padding: 1em;">'+i+'</span>';
 //	}
 	S('#main').html(str);
-
+	S('.chart').on('click',function(e){
+		var people = S(e.currentTarget).parent().find('.people');
+		people.css({'display':(people.css('display')=='none' ? 'block':'none')})
+	});
 }
 
 function genderSplitByRole(typ,order){
 	var roles = {};
-	var org,e,p;
+	var people = {};
+	var bio,org,e,p,list;
 	for(e = 0; e < fulldata.organisations.length; e++){
 		org = fulldata.organisations[e];
 		if(org['type'] == typ){
 			for(p = 0; p < org.people.length; p++){
 				if(!roles[org.people[p].role]){ roles[org.people[p].role] = { 'male': 0, 'female': 0, 'other': 0, 'unknown': 0 } }
 				roles[org.people[p].role][org.people[p].gender]++;
+				if(!people[org.people[p].role]){ people[org.people[p].role] = new Array(); }
+				bio = org.people[p];
+				bio.org = org;
+				people[org.people[p].role].push(bio)
 			}
 		}
 	}
@@ -157,7 +165,12 @@ function genderSplitByRole(typ,order){
 			str += '<tr><td>'+r+'</td>';
 			var m = (100*roles[r].male/t).toFixed(1);
 			var f = (100-parseFloat(m)).toFixed(1);
-			str += '<td><div class="chart">'+(roles[r].female == 0 ? '' : '<div class="bar female" style="width:'+f+'%;" title="'+f+'%"><span>'+roles[r].female+'</span></div>')+'<div class="bar male" style="width:'+m+'%;" title="'+m+'%"><span>'+roles[r].male+'</span></div></div></td>';
+			list = '<ul class="people" style="display:none;">';
+			for(var p = 0; p < people[r].length; p++){
+				list += '<li><div class="handle '+people[r][p].gender+'"></div><div class="name">'+people[r][p].name+' ('+(people[r][p].org.url ? '<a href="'+people[r][p].org.url+'">' : '')+people[r][p].org.name+(people[r][p].org.url ? '</a>':'')+')</div></li>';
+			}
+			list += '</ul>';
+			str += '<td><div class="chart" style="cursor:pointer;">'+(roles[r].female == 0 ? '' : '<div class="bar female" style="width:'+f+'%;" title="'+f+'%"><span>'+roles[r].female+' '+(roles[r].female == 1 ? 'woman':'women')+'</span></div>')+'<div class="bar male" style="width:'+m+'%;" title="'+m+'%"><span>'+roles[r].male+' '+(roles[r].male == 1 ? 'man':'men')+'</span></div></div>'+list+'</td>';
 			str += '</tr>';
 		}
 	}
