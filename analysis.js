@@ -167,7 +167,7 @@ function genderSplitByRole(typ,order){
 			var f = (100-parseFloat(m)).toFixed(1);
 			list = '<ul class="people" style="display:none;">';
 			for(var p = 0; p < people[r].length; p++){
-				list += '<li><div class="handle '+people[r][p].gender+'"></div><div class="name">'+people[r][p].name+' ('+(people[r][p].org.url ? '<a href="'+people[r][p].org.url+'">' : '')+people[r][p].org.name+(people[r][p].org.url ? '</a>':'')+')</div></li>';
+				list += '<li class="'+people[r][p].gender+'">'+people[r][p].name+' ('+(people[r][p].org.url ? '<a href="'+people[r][p].org.url+'">' : '')+people[r][p].org.name+(people[r][p].org.url ? '</a>':'')+')</li>';
 			}
 			list += '</ul>';
 			str += '<td><div class="chart" style="cursor:pointer;">'+(roles[r].female == 0 ? '' : '<div class="bar female" style="width:'+f+'%;" title="'+f+'%"><span>'+roles[r].female+' '+(roles[r].female == 1 ? 'woman':'women')+'</span></div>')+'<div class="bar male" style="width:'+m+'%;" title="'+m+'%"><span>'+roles[r].male+' '+(roles[r].male == 1 ? 'man':'men')+'</span></div></div>'+list+'</td>';

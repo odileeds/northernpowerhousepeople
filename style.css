@@ -86,9 +86,10 @@ a { color: inherit; }
 	position: relative;
 	white-space: nowrap;
 }
-ul.people { padding: 0.5em; background-color: #efefef; margin-bottom: 1em; }
-ul.people li { line-height: 1.5em; position: relative; }
-ul.people .handle { width: 1em; display: inline-block; height: 1em; margin-right: 0.25em; top: 0.12em; position: relative; border-radius: 100%; }
+ul.people { padding: 0.25em 0.5em 0.5em 0.5em; background-color: #efefef; margin-bottom: 1em; position: relative; }
+ul.people li { line-height: 1.5em; position: relative; padding-left: 1.5em; background-color: transparent; color: inherit; }
+ul.people li:before { content: ""; margin-left: -1.5em; margin-top: 0.25em; margin-right: 0.25em; position: absolute; width: 1em; height: 1em; display: inline-block; background-color: #722EA5; border-radius: 100%; }
+ul.people .handle { width: 1em; display: none; height: 1em; margin-right: 0.25em; top: 0.12em; position: relative; border-radius: 100%; }
 ul.people .name { display: inline-block; }
 
 table { width: 100%; }
@@ -103,9 +104,9 @@ table:last-child { margin-bottom: 0; }
 .c3-bg { background-color: #00B6FF; color: white; }
 .c4-bg { background-color: #08DEF9; }
 .c5-bg { background-color: #1DD3A7; color: white; }
-.c6-bg, .male { background-color: #0DBC37; color: white; }
+.c6-bg, .male, ul.people li.male:before { background-color: #0DBC37; color: white; }
 .c7-bg { background-color: #67E767; }
-.c8-bg, .female { background-color: #722EA5; color: white; }
+.c8-bg, .female, ul.people li.female:before { background-color: #722EA5; color: white; }
 .c9-bg { background-color: #E6007C; color: white; }
 .c10-bg { background-color: #EF3AAB; }
 .c11-bg { background-color: #D73058; }
@@ -116,10 +117,10 @@ table:last-child { margin-bottom: 0; }
 .b2-bg { background-color: #333333; }
 .b3-bg { background-color: #999999; }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1096px) {
 	.header .title { font-size: 1.3em; }
 	table td { display: block; }
 	.chart { display: block; position relative; }
-	.bar { height: 3em; display: inline-block;}
+	.bar { display: inline-block;}
 	.header, #main { padding: 1em; }
 }
