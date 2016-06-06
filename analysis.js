@@ -84,10 +84,16 @@ function sort(d,i,reverse){
 function drawResults(){
 	var gender = { 'm': 0, 'f': 0, 'o': 0, 'u': 0 };
 	var types = {};
+	var list = {};
 	for(var e = 0; e < fulldata.organisations.length; e++){
 		org = fulldata.organisations[e];
-		if(!types[org['type']]){ types[org['type']] = 0; }
+		if(!types[org['type']]){
+			types[org['type']] = 0;
+			list[org['type']] = '';
+		}
 		types[org['type']]++;
+		list[org['type']] += (list[org['type']] ? ', ':'')+(org.url ? '<a href="'+org.url+'">':'')+org.name.replace(/ Council$/,'')+(org.url ? '</a>':'');
+		
 		for(var g in org.gender){
 			gender[g] += org.gender[g];
 		}
@@ -97,7 +103,7 @@ function drawResults(){
 	// Build output
 	var str = "";
 	// Information about the types of organisation
-	str += '<p>The <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="c14-bg">data set</a> consists of '+listByLargest(types,orgconfig)+'. ';
+	str += '<p>The <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="highlight">data set</a> consists of '+listByLargest(types,orgconfig)+'. ';
 	
 	// Information about the gender split
 	var t = 0;
@@ -107,7 +113,8 @@ function drawResults(){
 	// For each organisation type
 	for(var t in orgconfig){
 		// By role
-		str += '<h2>Gender split by role for '+orgconfig[t].plural+' ('+types[t]+')</h2>';
+		str += '<h2>'+orgconfig[t].plural.substr(0,1).toUpperCase()+orgconfig[t].plural.substr(1)+' ('+types[t]+')</h2>';
+		str += '<p>The <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="highlight">data set</a> consists of the following '+orgconfig[t].plural+': '+list[t]+'.</p>';
 		str += genderSplitByRole(t,['Leader','Deputy Leader','Elected Mayor','Mayor','Deputy Mayor','Chair','Deputy Chair','Vice Chair','Chief Executive','Deputy Chief Executive','Chief Operating Officer']);
 	}
 
@@ -196,7 +203,7 @@ function genderSplitByRole(typ,order){
 		str += '</tr>';
 	}
 	str += '</table>';
-	str = '<p>Amongst '+orgconfig[typ].plural+', women are represented in '+f+'% of senior leadership roles.</p>'+str;
+	str = '<p>Amongst '+orgconfig[typ].plural+', women are represented in '+f+'% of senior leadership roles. Those roles break down as follows:</p>'+str;
 	return str;
 }
 
