@@ -114,7 +114,7 @@ function drawResults(){
 	for(var t in orgconfig){
 		// By role
 		str += '<h2>'+orgconfig[t].plural.substr(0,1).toUpperCase()+orgconfig[t].plural.substr(1)+'</h2>';
-		str += '<p>The <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="highlight">data set</a> consists of '+types[t]+' '+orgconfig[t].plural+': '+list[t]+'.</p>';
+		str += '<p>There are '+types[t]+' '+orgconfig[t].plural+' in the <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="highlight">data set</a>: '+list[t]+'.</p>';
 		str += genderSplitByRole(t,['Leader','Deputy Leader','Elected Mayor','Mayor','Deputy Mayor','Chair','Deputy Chair','Vice Chair','Chief Executive','Deputy Chief Executive','Chief Operating Officer']);
 	}
 
