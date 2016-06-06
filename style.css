@@ -68,6 +68,7 @@ a:hover, a:focus { text-decoration: underline; }
 	position: relative;
 	padding: 1em 0;
 }
+strong { font-weight: 600; }
 .chart {
 	width: 100%;
 }

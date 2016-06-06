@@ -108,13 +108,13 @@ function drawResults(){
 	// Information about the gender split
 	var t = 0;
 	for(var g in gender) t += gender[g];
-	str += 'Across all the organisations there are '+t+' leadership roles listed. They are filled by '+listByLargest(gender,{'m':{'plural':'men','singular':'man','cls':'male'},'f':{'plural':'women','singular':'woman','cls':'female'},'o':{'plural':'other','cls':'c14-bg'},'u':{'plural':'unclassified','cls':'c15-bg'}})+'; women make up '+(100*gender.f/t).toFixed(1)+'% of leadership roles.</p>';
+	str += 'Across all the organisations there are '+t+' leadership roles listed. They are filled by '+listByLargest(gender,{'m':{'plural':'men','singular':'man','cls':'male'},'f':{'plural':'women','singular':'woman','cls':'female'},'o':{'plural':'other','cls':'c14-bg'},'u':{'plural':'unclassified','cls':'c15-bg'}})+'; women make up <strong>'+(100*gender.f/t).toFixed(1)+'%</strong> of leadership roles.</p>';
 
 	// For each organisation type
 	for(var t in orgconfig){
 		// By role
 		str += '<h2>'+orgconfig[t].plural.substr(0,1).toUpperCase()+orgconfig[t].plural.substr(1)+'</h2>';
-		str += '<p>There are '+types[t]+' '+orgconfig[t].plural+' in the <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="highlight">data set</a>: '+list[t]+'.</p>';
+		str += '<p>There are <strong>'+types[t]+'</strong> '+orgconfig[t].plural+' in the <a href="https://github.com/odileeds/northernpowerhousepeople/blob/master/organisations.csv" class="highlight">data set</a>: '+list[t]+'.</p>';
 		str += genderSplitByRole(t,['Leader','Deputy Leader','Elected Mayor','Mayor','Deputy Mayor','Chair','Deputy Chair','Vice Chair','Chief Executive','Deputy Chief Executive','Chief Operating Officer']);
 	}
 
@@ -123,7 +123,7 @@ function drawResults(){
 //	for(var i = 1; i < 16; i++){
 //		str += '<span class="c'+i+'-bg" style="padding: 1em;">'+i+'</span>';
 //	}
-	S('#main').html(str);
+	S('#results').html(str);
 	S('.chart').on('click',function(e){
 		var people = S(e.currentTarget).parent().find('.people');
 		people.css({'display':(people.css('display')=='none' ? 'block':'none')})
@@ -203,7 +203,7 @@ function genderSplitByRole(typ,order){
 		str += '</tr>';
 	}
 	str += '</table>';
-	str = '<p>Amongst '+orgconfig[typ].plural+', women are represented in '+(ml==tl ? 'none of the' : f+'% of')+' senior leadership roles. The roles break down as follows:</p>'+str;
+	str = '<p>Amongst '+orgconfig[typ].plural+', women are represented in <strong>'+(ml==tl ? 'none</strong> of the' : f+'%</strong> of')+' senior leadership roles. The roles break down as follows:</p>'+str;
 	return str;
 }
 
