@@ -203,7 +203,7 @@ function genderSplitByRole(typ,order){
 		str += '</tr>';
 	}
 	str += '</table>';
-	str = '<p>Amongst '+orgconfig[typ].plural+', women are represented in '+f+'% of senior leadership roles. Those roles break down as follows:</p>'+str;
+	str = '<p>Amongst '+orgconfig[typ].plural+', women are represented in '+(ml==tl ? 'none of the' : f+'% of')+' senior leadership roles. The roles break down as follows:</p>'+str;
 	return str;
 }
 
